@@ -1,0 +1,8 @@
+
+apply from: "https://gitee.com/ezy/gradle/raw/master/build-library-android-publish.gradle"
+
+dependencies {
+
+    compileOnly "com.squareup.okhttp3:okhttp:4.9.1"
+    compileOnly "com.squareup.okhttp3:okhttp-urlconnection:4.9.1"
+}

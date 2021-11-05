@@ -1,0 +1,14 @@
+
+apply from: "https://gitee.com/ezy/gradle/raw/master/build-library-app.gradle"
+
+apply plugin: 'kotlin-android-extensions'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
+    implementation project(':webcache')
+
+    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:4.9.1"
+
+}
