@@ -4,5 +4,4 @@ apply from: "$buildGradlePath/build-library-android.gradle"
 dependencies {
 
     compileOnly "com.squareup.okhttp3:okhttp:4.10.0"
-    compileOnly "com.squareup.okhttp3:okhttp-urlconnection:4.10.0"
 }
