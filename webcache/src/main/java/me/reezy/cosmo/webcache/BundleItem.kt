@@ -1,4 +1,4 @@
-package me.reezy.jetpack.webcache
+package me.reezy.cosmo.webcache
 
 import android.os.Parcel
 import android.os.Parcelable

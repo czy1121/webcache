@@ -1,4 +1,4 @@
-package me.reezy.jetpack.webcache
+package me.reezy.cosmo.webcache
 
 import okhttp3.Interceptor
 import okhttp3.Response

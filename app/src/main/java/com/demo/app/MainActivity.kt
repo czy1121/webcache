@@ -1,4 +1,4 @@
-package me.reezy.demo.webcache;
+package com.demo.app;
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.layout_web.*
-import me.reezy.jetpack.webcache.WebCacheManager
+import com.demo.app.databinding.LayoutWebBinding
+import me.reezy.cosmo.webcache.WebCacheManager
 
 
 class MainActivity : AppCompatActivity(R.layout.layout_web) {
+
+    private val binding by lazy { LayoutWebBinding.bind(findViewById<ViewGroup>(android.R.id.content).getChildAt(0)) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity(R.layout.layout_web) {
 
         WebCacheManager.init(this)
 
-        web.webViewClient = object : WebViewClient() {
+        binding.web.webViewClient = object : WebViewClient() {
             override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
                 return WebCacheManager.get(request)
             }
@@ -32,22 +34,22 @@ class MainActivity : AppCompatActivity(R.layout.layout_web) {
 
 
             override fun onPageStarted(view: WebView, url: String?, favicon: Bitmap?) {
-                progress.visibility = View.VISIBLE
+                binding.progress.visibility = View.VISIBLE
             }
 
             override fun onPageFinished(view: WebView, url: String?) {
-                progress.visibility = View.GONE
+                binding.progress.visibility = View.GONE
             }
 
         }
-        web.webChromeClient = object : WebChromeClient() {
+        binding.web.webChromeClient = object : WebChromeClient() {
 
             override fun onShowCustomView(view: View?, callback: CustomViewCallback?) {
                 super.onShowCustomView(view, callback)
             }
 
             override fun onProgressChanged(view: WebView, newProgress: Int) {
-                progress.progress = newProgress
+                binding.progress.progress = newProgress
             }
 
             override fun onReceivedTitle(view: WebView, title: String?) {
@@ -55,11 +57,11 @@ class MainActivity : AppCompatActivity(R.layout.layout_web) {
         }
 
 
-        initWebSettings(web)
+        initWebSettings(binding.web)
 
 
-        web.requestFocus()
-        web.loadUrl("https://juejin.cn")
+        binding.web.requestFocus()
+        binding.web.loadUrl("https://juejin.cn")
 
 
     }
@@ -123,20 +125,20 @@ class MainActivity : AppCompatActivity(R.layout.layout_web) {
     }
 
     override fun onDestroy() {
-        web.stopLoading()
-        web.clearHistory()
-        web.removeAllViews()
-        web.destroy()
-        val parent = web.parent
+        binding.web.stopLoading()
+        binding.web.clearHistory()
+        binding.web.removeAllViews()
+        binding.web.destroy()
+        val parent = binding.web.parent
         if (parent is ViewGroup) {
-            parent.removeView(web)
+            parent.removeView(binding.web)
         }
         super.onDestroy()
     }
 
     override fun onBackPressed() {
-        if (web.canGoBack()) {
-            web.goBack()
+        if (binding.web.canGoBack()) {
+            binding.web.goBack()
         } else {
             super.onBackPressed()
         }

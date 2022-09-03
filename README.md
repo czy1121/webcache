@@ -9,7 +9,7 @@ WebView 缓存管理，提升网页打开速度。
   - 动态资源包，需要动态预加载
 - 离线资源，直接从`assets`目录加载资源
 - HTTP缓存，使用Okhttp的代替WebView的缓存管理
- 
+
 ## 使用
 
 ```kotlin   
@@ -62,10 +62,10 @@ web.webViewClient = object : WebViewClient() {
 
 ``` groovy
 repositories { 
-    maven { url "https://gitee.com/ezy/repo/raw/android_public/"}
+    maven { url "https://gitee.com/ezy/repo/raw/cosmo/"}
 } 
 dependencies {
-    implementation "me.reezy.jetpack:webcache:0.4.0" 
+    implementation "me.reezy.cosmo:webcache:0.7.0"
 }
 ```
  
